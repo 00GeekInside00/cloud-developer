@@ -46,3 +46,7 @@ Prevent requests without valid authentication headers.
 
 Add your own domain name and have it point to the running services (try adding a subdomain name to point to the processing server)
 > !NOTE: Domain names are not included in AWS’ free tier and will incur a cost.
+
+### Github & Deployment Flow
+
+![udacity-deployment-diagram](https://user-images.githubusercontent.com/26045423/189244791-f63bf316-357a-4322-bcbc-3c4eea9bdaf7.png)
