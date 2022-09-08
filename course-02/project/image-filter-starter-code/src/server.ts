@@ -31,7 +31,7 @@ import { filterImageFromURL, deleteLocalFiles } from './util/util';
   // upload and process an image from url 
   app.get("/filteredimage", async (req: express.Request, res: express.Response) => {
 
-    const image_url:string = req.query;
+    const { image_url } :{image_url:string} = req.query;
 
     if (!image_url) {
       return res.status(400).send({ "error": "Image url is required!" });
