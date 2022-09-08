@@ -34,14 +34,14 @@ import { filterImageFromURL, deleteLocalFiles } from './util/util';
     const { image_url } = req.query;
 
     if (!image_url) {
-      return res.status(400).send("Image url is required!");
+      return res.status(400).send({"error":"Image url is required!"});
     }
 
     const filtered_image_path = await filterImageFromURL(image_url)
       .then((image_path) => {
         res.status(200).sendFile(image_path, (err) => {
           if (err) {
-            return res.status(500);
+            return res.status(500).send({'error':'Internal Server Error. Please Contact System Admin'});;
           }
           deleteLocalFiles([image_path])
         });
