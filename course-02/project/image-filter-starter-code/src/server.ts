@@ -29,19 +29,19 @@ import { filterImageFromURL, deleteLocalFiles } from './util/util';
 
   // Implement /filterimage endpoint
   // upload and process an image from url 
-  app.get("/filteredimage", async (req, res) => {
+  app.get("/filteredimage", async (req: express.Request, res: express.Response) => {
 
     const { image_url } = req.query;
 
     if (!image_url) {
-      return res.status(400).send({"error":"Image url is required!"});
+      return res.status(400).send({ "error": "Image url is required!" });
     }
 
     const filtered_image_path = await filterImageFromURL(image_url)
       .then((image_path) => {
         res.status(200).sendFile(image_path, (err) => {
           if (err) {
-            return res.status(500).send({'error':'Internal Server Error. Please Contact System Admin'});;
+            return res.status(500).send({ 'error': 'Internal Server Error. Please Contact System Admin' });;
           }
           deleteLocalFiles([image_path])
         });
@@ -57,14 +57,14 @@ import { filterImageFromURL, deleteLocalFiles } from './util/util';
 
   // Root Endpoint
   // Displays a simple message to the user
-  app.get("/", async (req, res) => {
+  app.get("/", async (req: express.Request, res: express.Response) => {
     res.send("<marquee><h2>try GET <a href='/filteredimage?image_url='>/filteredimage?image_url={{}}</a></h2></marquee>")
   });
 
 
   // Root Endpoint
   // Displays a simple message to the user
-  app.get("/", async (req, res) => {
+  app.get("/", async (req: express.Request, res: express.Response) => {
     res.send("try GET /filteredimage?image_url={{}}")
   });
 
